@@ -18,19 +18,8 @@ import { Request, Response } from 'express';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('users/:id')
-  getHello(
-    @Req() req: Request,
-    @Param('id') id: string,
-    @Query() query: any,
-    @Res() res: Response,
-  ) {
-    const host = req.hostname;
-    res.json({
-      host,
-      id,
-      query,
-    });
+  @Get()
+  getHello() {
     return this.appService.getHello();
   }
 }
