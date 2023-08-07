@@ -7,6 +7,7 @@ import {
   HttpException,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Post,
   Query,
   Redirect,
@@ -19,6 +20,7 @@ import { Request, Response } from 'express';
 import { HttpExceptionFilter } from './http-exception/http-exception.filter';
 
 @Controller()
+@UseFilters(HttpExceptionFilter)
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
