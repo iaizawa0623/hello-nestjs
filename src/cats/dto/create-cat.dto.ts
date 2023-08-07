@@ -1,3 +1,4 @@
+import { IsString, IsInt } from 'class-validator';
 import * as Joi from 'joi';
 
 export const createCatSchema = Joi.object({
@@ -7,7 +8,12 @@ export const createCatSchema = Joi.object({
 });
 
 export class CreateCatDto {
+  @IsString()
   name: string;
+
+  @IsInt()
   age: number;
+
+  @IsString()
   breed: string;
 }

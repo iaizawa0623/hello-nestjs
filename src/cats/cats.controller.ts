@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Controller,
   Get,
@@ -19,8 +20,8 @@ export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Post()
-  @UsePipes(new JoiValidationPipe(createCatSchema))
-  async create(@Body() createCatDto: CreateCatDto) {
+  // @UsePipes(new JoiValidationPipe(createCatSchema))
+  async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
 
