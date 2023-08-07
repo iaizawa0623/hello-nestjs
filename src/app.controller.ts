@@ -14,12 +14,16 @@ import {
   Req,
   Res,
   UseFilters,
+  UseGuards,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request, Response } from 'express';
 import { HttpExceptionFilter } from './http-exception/http-exception.filter';
+import { RolesGuard } from './roles/roles.guard';
+import { AuthGuard } from './auth/auth.guard';
 
 @Controller()
+@UseGuards(RolesGuard, AuthGuard)
 @UseFilters(HttpExceptionFilter)
 export class AppController {
   constructor(private readonly appService: AppService) {}

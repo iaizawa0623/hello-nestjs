@@ -8,12 +8,15 @@ import {
   ParseIntPipe,
   HttpStatus,
   UsePipes,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateCatDto, createCatSchema } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
 import { ValidationPipe } from 'src/validation/validation.pipe';
 import { JoiValidationPipe } from 'src/joi-validation-pipe/joi-validation-pipe.pipe';
+import { Roles } from 'src/roles/roles.decorator';
+import { RolesGuard } from 'src/roles/roles.guard';
 
 @Controller('cats')
 export class CatsController {
@@ -21,6 +24,8 @@ export class CatsController {
 
   @Post()
   // @UsePipes(new JoiValidationPipe(createCatSchema))
+  // @Roles('admin')
+  @UseGuards(RolesGuard)
   async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }

@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { NextFunction, Request, Response } from 'express';
 
 /**
@@ -12,7 +12,7 @@ export class LoggerMiddleware implements NestMiddleware {
     const headers = req.headers;
     const url = req.originalUrl;
     const body = req.body;
-    console.log({
+    Logger.log({
       datetime,
       clientIpAddress,
       url,
