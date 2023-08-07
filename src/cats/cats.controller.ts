@@ -6,17 +6,20 @@ import {
   Param,
   ParseIntPipe,
   HttpStatus,
+  UsePipes,
 } from '@nestjs/common';
-import { CreateCatDto } from './dto/create-cat.dto';
+import { CreateCatDto, createCatSchema } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
 import { Cat } from './interfaces/cat.interface';
 import { ValidationPipe } from 'src/validation/validation.pipe';
+import { JoiValidationPipe } from 'src/joi-validation-pipe/joi-validation-pipe.pipe';
 
 @Controller('cats')
 export class CatsController {
   constructor(private catsService: CatsService) {}
 
   @Post()
+  @UsePipes(new JoiValidationPipe(createCatSchema))
   async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
