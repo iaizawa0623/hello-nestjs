@@ -21,7 +21,7 @@ export class CatsController {
 
   @Post()
   // @UsePipes(new JoiValidationPipe(createCatSchema))
-  async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
+  async create(@Body() createCatDto: CreateCatDto) {
     this.catsService.create(createCatDto);
   }
 
@@ -34,7 +34,6 @@ export class CatsController {
   async findOne(
     @Param(
       'id',
-      new ValidationPipe(),
       new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: number,
