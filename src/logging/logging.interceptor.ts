@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Injectable,
   NestInterceptor,
@@ -11,11 +12,10 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    Logger.log('Before...');
+    // Logger.log('Before...');
 
     const now = Date.now();
-    return next
-      .handle()
-      .pipe(tap(() => Logger.log(`After... ${Date.now() - now}ms`)));
+    return next.handle();
+    // .pipe(tap(() => Logger.log(`After... ${Date.now() - now}ms`)));
   }
 }

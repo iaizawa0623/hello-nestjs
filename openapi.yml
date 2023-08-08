@@ -1,0 +1,138 @@
+openapi: 3.0.0
+paths:
+  /:
+    get:
+      operationId: AppController_getHello
+      summary: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /exception:
+    get:
+      operationId: AppController_getException
+      summary: ''
+      parameters: []
+      responses:
+        '400':
+          description: Bad Request.
+  /cats:
+    post:
+      operationId: CatsController_create
+      summary: ''
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              example:
+                name: Tom
+                age: 17
+                breed: hoge
+      responses:
+        '201':
+          description: OK
+    get:
+      operationId: CatsController_findAll
+      summary: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /cats/{id}:
+    get:
+      operationId: CatsController_findOne
+      summary: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          example: 0
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+  /users:
+    post:
+      operationId: UsersController_create
+      summary: ''
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDto'
+      responses:
+        '201':
+          description: OK
+    get:
+      operationId: UsersController_findAll
+      summary: ''
+      parameters: []
+      responses:
+        '200':
+          description: OK
+  /users/{id}:
+    get:
+      operationId: UsersController_findOne
+      summary: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          example: 1
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+    patch:
+      operationId: UsersController_update
+      summary: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          example: 1
+          schema:
+            type: number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserDto'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: UsersController_remove
+      summary: ''
+      parameters:
+        - name: id
+          required: true
+          in: path
+          example: 1
+          schema:
+            type: number
+      responses:
+        '200':
+          description: OK
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateUserDto:
+      type: object
+      properties: {}
+    UpdateUserDto:
+      type: object
+      properties: {}
